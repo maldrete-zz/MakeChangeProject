@@ -2,25 +2,11 @@ import java.util.Scanner;
 
 public class CashRegisterApp {
 	static Scanner kb = new Scanner(System.in);
-	private static double itemPrice;
-	private static double moneyTendered;
-	private static double moneyOverPrice;
-	static double twenty = 20.00;
-	static double ten = 10.00;
-	static double five = 5.00;
-	static double one = 1.00;
-	static double quarter = 0.25;
-	static double dime = 0.10;
-	static double nickel = 0.05;
-	static double penny = 0.01;
-	static int numTwenty = 0;
-	static int numTen = 0;
-	static int numFive = 0;
-	static int numOne = 0;
-	static int numQuarter = 0;
-	static int numDime = 0;
-	static int numNickel = 0;
-	static int numPenny = 0;
+	static double itemPrice;
+	static double moneyTendered;
+	static double moneyOverPrice;
+	
+	
 
 	public static void main(String[] args) {
 
@@ -35,6 +21,8 @@ public class CashRegisterApp {
 
 		System.out.println("How much money was tendered by the customer: ");
 		moneyTendered = kb.nextDouble();
+		
+		kb.close();
 	}
 
 	public static void originalAmountChecked(double price, double tendered) {
@@ -43,84 +31,49 @@ public class CashRegisterApp {
 		} else if (tendered == price) {
 			System.out.println("exact amount recieved");
 		}
-		while (tendered > price) {
-			moneyOverPrice = tendered - price;
-			if (moneyOverPrice > ten) {
-				tendered -= twenty;
-				numTwenty += 1;
-			}
-			if (moneyOverPrice > five) {
-				tendered -= ten;
-				numTen += 1;
-			}
-			if (moneyOverPrice > one) {
-				tendered -= one;
-				numOne += 1;
-			}
-			if (moneyOverPrice > quarter) {
-				tendered -= quarter;
-				numQuarter += 1;
-			}
-			if (moneyOverPrice > dime) {
-				tendered -= dime;
-				numDime += 1;
-			}
-			if (moneyOverPrice > nickel) {
-				tendered -= nickel;
-				numNickel += 1;
-			}
-			if (moneyOverPrice > dime) {
-				tendered -= dime;
-				numDime += 1;
-			}
-			if (moneyOverPrice > nickel) {
-				tendered -= nickel;
-				numNickel += 1;
-			}
-			if (moneyOverPrice > penny) {
-				tendered -= penny;
-				numPenny += 1;
-			}
 
+		moneyOverPrice = tendered - price;
+		
+		if (moneyOverPrice >= 20) {
+			int numTwenty = (int)(moneyOverPrice / 20);
+			moneyOverPrice = (moneyOverPrice % 20);
+			System.out.println("Twenty: " + numTwenty);
 		}
-		System.out.printf(numTwenty + " Twenty, " + numTen + " Ten, " + numFive + " Five, " + numOne + " One, "
-				+ numQuarter + " numQuarter, " + numDime + " numDime, " + numNickel + " Nickel, " + numPenny + " Penny");
-
+		if (moneyOverPrice >= 10) {
+			int numTen = (int)(moneyOverPrice / 10);
+			moneyOverPrice = (moneyOverPrice % 10);
+			System.out.println("Tens: " + numTen);
+		}
+		if (moneyOverPrice >= 5) {
+			int numFive = (int)(moneyOverPrice / 5);
+			moneyOverPrice = (int) (moneyOverPrice % 5);
+			System.out.println("Fives: " + numFive);
+		}
+		if (moneyOverPrice >= 1) {
+			int numOne = (int)(moneyOverPrice / 1);
+			moneyOverPrice = (moneyOverPrice % 1);
+			System.out.println("Ones: " + numOne);
+		}
+		if (moneyOverPrice >= .25) {
+			int numQuarter = (int)(moneyOverPrice / .25);
+			moneyOverPrice = (moneyOverPrice % .25);
+			System.out.println("Quarters: " + numQuarter);
+		}
+		if (moneyOverPrice >= .10) {
+			int numDime = (int)(moneyOverPrice / .10);
+			moneyOverPrice = (moneyOverPrice % .10);
+			System.out.println("Dimes: " + numDime);
+		}
+		if (moneyOverPrice >= .05) {
+			int numNickel = (int)(moneyOverPrice / .05);
+			moneyOverPrice = (moneyOverPrice % .05);
+			System.out.println("Nickel: " + numNickel);
+		}
+		if (moneyOverPrice >= .001) {
+			int numPenny = (int)(moneyOverPrice / .009);
+			System.out.println("Penny: " + numPenny);
+		}
 	}
 
-//	public static String changeBreakdown(double price, double tendered) {
-//		while (tendered > price) {
-//			moneyOverPrice = tendered - price;
-//			if (moneyOverPrice > ten)
-//				tendered -= twenty;
-//			numTwenty += 1;
-//		} if (moneyOverPrice > five){
-//			tendered -= ten;
-//			numTen += 1;
-//		} if (moneyOverPrice > one) {
-//			tendered -= one;
-//			numOne += 1;
-//		} if (moneyOverPrice >  quarter) {
-//			tendered -= quarter;
-//			numQuarter += 1;
-//		} if (moneyOverPrice > dime) {
-//			tendered -= dime;
-//			numDime += 1;
-//		} if (moneyOverPrice > nickel) {
-//			tendered -= nickel;
-//			numNickel += 1;
-//		} if (moneyOverPrice > dime) {
-//			tendered -= dime;
-//			numDime += 1;
-//		} if (moneyOverPrice > nickel) {
-//			tendered -= nickel;
-//			numNickel =+ 1;
-//		} if (moneyOverPrice > penny) {
-//			tendered -= penny;
-//			numPenny += 1;
-//			
-//		}
-//		return numTwenty + " Twenty dollar bill";
-//	}
 
 }
